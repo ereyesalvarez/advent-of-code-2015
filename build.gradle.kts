@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "com.ereyesalvarez.adven.fifteen"
+group = "com.ereyesalvarez.advent.fifteen"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -22,8 +22,4 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
-}
-
-application {
-    mainClass.set("MainKt")
 }
