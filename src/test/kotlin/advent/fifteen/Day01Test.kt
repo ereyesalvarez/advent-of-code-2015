@@ -2,7 +2,6 @@ package advent.fifteen
 
 
 import kotlin.test.Test
-import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 class Day01Test {
