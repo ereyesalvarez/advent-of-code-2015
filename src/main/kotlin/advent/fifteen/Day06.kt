@@ -10,23 +10,20 @@ class Day06 {
     }
 
     private fun solveDay1(input: String): Int {
-        val array = MutableList(1000) { MutableList(1000) { false } }
+        val array = MutableList(1000) { MutableList(1000) { 0 } }
         input.lines().filter { it.isNotBlank() }.map { getAction(it) }
             .forEach { applyChange(array, it) }
-        return countOn(array)
+        return countBright(array)
     }
 
-    private fun countOn(array: List<List<Boolean>>): Int {
-        return array.fold(0) { acc, n -> n.count { it } + acc }
-    }
 
-    private fun applyChange(array: MutableList<MutableList<Boolean>>, lineAction: LineAction) {
+    private fun applyChange(array: MutableList<MutableList<Int>>, lineAction: LineAction) {
         for (x in lineAction.from.x..lineAction.to.x) {
             for (y in lineAction.from.y..lineAction.to.y) {
                 when (lineAction.action) {
-                    Action.TurnOn -> array[y][x] = true
-                    Action.TurnOff -> array[y][x] = false
-                    Action.Toggle -> array[y][x] = !array[y][x]
+                    Action.TurnOn -> array[y][x] = 1
+                    Action.TurnOff -> array[y][x] = 0
+                    Action.Toggle -> array[y][x] = if (array[y][x] == 1) 0 else 1
                 }
             }
         }
