@@ -1,8 +1,5 @@
 package advent.fifteen
 
-import java.security.MessageDigest
-import kotlin.text.Charsets.UTF_8
-
 class Day05 {
     fun execute01(input: String): Int {
         return solveDay1(input)

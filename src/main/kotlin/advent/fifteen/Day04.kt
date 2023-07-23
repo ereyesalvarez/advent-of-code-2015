@@ -28,7 +28,7 @@ class Day04 {
         } while (true)
     }
 
-    fun generateString(key: String, suffix: Int): String{
+    private fun generateString(key: String, suffix: Int): String{
         val value = key + suffix
         return md5AsString(value)
     }

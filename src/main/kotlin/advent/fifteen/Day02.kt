@@ -12,8 +12,8 @@ class Day02 {
     private fun solveDay1(input: String): Int {
         // 2*l*w + 2*w*h + 2*h*l + small side
         var sum = 0
-        input.lines().forEach {
-            val (l, w, h) = it.split("x").map { it.toInt() }
+        input.lines().forEach { line ->
+            val (l, w, h) = line.split("x").map { it.toInt() }
             val sides = calculateSides(l, w, h)
             val smallSide = sides.minOrNull() ?: throw Exception("Not found")
             val total = sides.sum() * 2 + smallSide
