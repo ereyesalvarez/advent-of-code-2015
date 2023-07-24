@@ -6,7 +6,6 @@ import kotlin.test.assertEquals
 
 class Day08Test {
     private val day = "08"
-    private val example = "data/day${day}_example.txt"
     private val input = "data/day${day}_input.txt"
 
     private val service = Day08()
