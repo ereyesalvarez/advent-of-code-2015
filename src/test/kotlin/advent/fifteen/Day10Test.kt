@@ -5,10 +5,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day10Test {
-    private val day = "10"
-    private val example = "data/day${day}_example.txt"
-    private val input = "data/day${day}_input.txt"
-
     private val service = Day10()
 
     @Test
