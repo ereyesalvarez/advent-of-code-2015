@@ -42,10 +42,10 @@ class Day08 {
 
     fun encode(line: String): String {
         val splitA = line.split("\"")
-        val result =  splitA.map{
+        val result = splitA.joinToString("\\\"") {
             val splitB = it.split("\\")
             splitB.joinToString("\\\\")
-        }.joinToString("\\\"")
+        }
         return "\"" + result + "\""
     }
 

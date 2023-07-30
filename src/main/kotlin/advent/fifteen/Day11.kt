@@ -6,7 +6,7 @@ class Day11 {
         return solve1(input)
     }
 
-    fun solve1(input: String): String {
+    private fun solve1(input: String): String {
         // cant contain 'i', 'o' or  'l'
         // need to contain at least three consecutive letter
         // two pairs of pairs

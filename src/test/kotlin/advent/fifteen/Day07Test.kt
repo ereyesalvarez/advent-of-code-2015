@@ -49,8 +49,7 @@ class Day07Test {
     @Test
     fun checkLShift() {
         val x = "123"
-        val b = 2
-        val expected: UInt = 492u
+        val expected = 492u
         val result = x.toUShort().toUInt() shl 2
         assertEquals(expected, result)
     }

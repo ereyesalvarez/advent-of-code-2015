@@ -33,7 +33,7 @@ class Day10 {
     }
 
     fun execute02(input: String, n: Int): Int {
-        var x = input.map { it -> it.digitToInt() }
+        var x = input.map { it.digitToInt() }
         for (i in 0..<n) {
             val z = solve2(x)
             x = z

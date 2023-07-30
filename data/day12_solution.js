@@ -26,7 +26,7 @@ function countNode(node, ignoreRed = false) {
     if (ignoreRed && objectHasRedProperty(node)){
       return 0
     }
-    for (const [key, value] of Object.entries(node)) {
+    for (const [, value] of Object.entries(node)) {
       count += countNode(value, ignoreRed)
     }
   }
@@ -34,7 +34,7 @@ function countNode(node, ignoreRed = false) {
 }
 
 function objectHasRedProperty(node){
-  for (const [key, value] of Object.entries(node)) {
+  for (const [, value] of Object.entries(node)) {
     if (value === "red") return true
   }
   return false

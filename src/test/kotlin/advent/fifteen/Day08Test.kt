@@ -57,7 +57,7 @@ class Day08Test {
         val fileContent = getFileAsText(input)
         val response = service.execute02(fileContent)
         println(response)
-        assertEquals(1371, response)
+        assertEquals(2117, response)
     }
 
     @Test

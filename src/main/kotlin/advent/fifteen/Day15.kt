@@ -8,15 +8,14 @@ class Day15 {
     fun execute01(input: String): Int {
         val ingredients = input.lines().map { mapIngredients(it) }
         val possibilities = calculatePossibilities(ingredients.size)
-        val result = possibilities.mapNotNull {
+        val result = possibilities.maxOf {
             calculateValue(it, ingredients)
-        }.max()
+        }
         return result
     }
 
-    fun calculateCalories(values: List<Int>, ingredients: List<Ingredient>): Int {
-        val capacity = maxOf(values.indices.sumOf { values[it] * ingredients[it].calories }, 0)
-        return capacity
+    private fun calculateCalories(values: List<Int>, ingredients: List<Ingredient>): Int {
+        return maxOf(values.indices.sumOf { values[it] * ingredients[it].calories }, 0)
     }
     private fun calculateValue(values: List<Int>, ingredients: List<Ingredient>): Int {
         val capacity = maxOf(values.indices.sumOf { values[it] * ingredients[it].capacity }, 0)
@@ -40,7 +39,7 @@ class Day15 {
         }
     }
 
-    fun calculatePossibilities(size: Int): List<List<Int>> {
+    private fun calculatePossibilities(size: Int): List<List<Int>> {
         var keepCalculating = true
         var current = List(size) { 0 }
         val possibilities = mutableListOf<List<Int>>()
