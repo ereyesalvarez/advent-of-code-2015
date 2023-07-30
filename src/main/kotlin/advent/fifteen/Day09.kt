@@ -54,16 +54,12 @@ class Day09 {
         val currentCity = current.first.currentCity
         val visitedCities = current.first.visitedCities
         val currentDistance = current.second
-        val n = cities.mapNotNull {
-            if (!visitedCities.contains(it)) {
-                val distance = sections[setOf(currentCity, it)]
-                if (distance == null) {
-                    null
-                } else {
-                    Pair(Travel(it, visitedCities + it), currentDistance + distance)
-                }
-            } else {
+        val n = cities.minus(currentCity).minus(visitedCities).mapNotNull {
+            val distance = sections[setOf(currentCity, it)]
+            if (distance == null){
                 null
+            } else {
+                Pair(Travel(it, visitedCities + it), currentDistance + distance)
             }
         }.toMap()
         return n
