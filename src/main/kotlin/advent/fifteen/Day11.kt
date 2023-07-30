@@ -13,25 +13,25 @@ class Day11 {
         return listIntToString(solve1(stringToListInt(input)))
     }
 
-    fun solve1(input:List<Int>): List<Int> {
+    private fun solve1(input:List<Int>): List<Int> {
         var response : List<Int> = input
         do {
            response = increase(response, response.size - 1)
         } while (validate(response) != 0)
         return response
     }
-    fun increase(input: List<Int>, pos: Int): List<Int>{
+    private fun increase(input: List<Int>, pos: Int): List<Int>{
         if (pos < 0){
             throw Exception("can't increase limit")
         }
         val x = input.toMutableList()
-        if (x[pos] == 122){
+        return if (x[pos] == 122){
             x[pos] = 97
-            return increase(x, pos - 1)
+            increase(x, pos - 1)
 
         } else {
             x[pos] = x[pos] + 1
-            return x
+            x
         }
     }
 
@@ -85,7 +85,7 @@ class Day11 {
         return input.map { it.code }
     }
 
-    fun listIntToString(input: List<Int>): String{
+    private fun listIntToString(input: List<Int>): String{
         return String(input.map { it.toChar() }.toCharArray())
     }
 

@@ -43,7 +43,7 @@ class Day10 {
 
 
     private fun solve2(input: List<Int>): List<Int> {
-        var buffer = mutableListOf<Int>()
+        val buffer = mutableListOf<Int>()
         var count = 0
         var lastC: Int? = null
         for (c in input) {
