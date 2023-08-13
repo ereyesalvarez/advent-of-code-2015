@@ -7,10 +7,10 @@ import kotlin.test.assertEquals
 class Day18Test {
     private val day = "18"
     private val example = "data/day${day}_example.txt"
-    private val step1 = "data/day_18_example_step1.txt"
-    private val step2 = "data/day_18_example_step2.txt"
-    private val step3 = "data/day_18_example_step3.txt"
-    private val step4 = "data/day_18_example_step4.txt"
+    private val step1 = "data/day${day}_example_step1.txt"
+    private val step2 = "data/day${day}_example_step2.txt"
+    private val step3 = "data/day${day}_example_step3.txt"
+    private val step4 = "data/day${day}_example_step4.txt"
     private val input = "data/day${day}_input.txt"
 
     private val service = Day18()

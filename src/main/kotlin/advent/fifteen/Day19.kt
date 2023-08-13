@@ -16,32 +16,62 @@ class Day19 {
         val (input1, input2) = input.split("\n\n")
         val (map, conversions) = mapLines(input1)
         val target = mapStartLine(input2, map)
-        return exploreInvert(target, listOf(map["e"]!!), conversions.map { Pair(it.second, it.first) }.sortedByDescending { it.first.size })
+        return exploreInvert(target, listOf(map["e"]!!), conversions)
     }
 
-    private fun exploreSecuencial(start: List<Int>, target: List<Int>, conversions: List<Pair<Int, List<Int>>>): Int{
+    private fun exploreSecuencial(start: List<Int>, target: List<Int>, conversions: List<Pair<Int, List<Int>>>): Int {
         var permutations = setOf(start)
         var steps = 0
         do {
             permutations = permutations.flatMap { generatePermutations(it, conversions) }.toSet()
             println("size: ${permutations.size} $steps ${permutations.first().size}")
             steps++
-        } while (!permutations.contains(target)  )
+        } while (!permutations.contains(target))
         return steps
     }
 
-    private fun exploreInvert(start: List<Int>, target: List<Int>, conversions: List<Pair<List<Int>, Int>>): Int{
-        if (start.size <= target.size){
+    private fun exploreSecuencialInvert(
+        start: List<Int>,
+        target: List<Int>,
+        conversions: List<Pair<Int, List<Int>>>
+    ): Int {
+        var permutations = setOf(start)
+        var steps = 0
+        do {
+            permutations = permutations.flatMap { generatePermutationsInvert(it, conversions) }.toSet()
+            if (permutations.size > 5_000){
+                permutations = permutations.take(5_000).toSet()
+            }
+            println("size: ${permutations.size} $steps ${permutations.first().size}")
+            steps++
+        } while (!permutations.contains(target))
+        return steps
+    }
+
+    private fun generatePermutationsInvert(startLine: List<Int>, conversions: List<Pair<Int, List<Int>>>): MutableSet<List<Int>> {
+        val permutations = mutableSetOf<List<Int>>()
+        for (c in conversions){
+            val index = Collections.indexOfSubList(startLine, c.second)
+            if (index >= 0) {
+                permutations += replaceIntList(startLine, c.second.size, c.first, index)
+            }
+        }
+        return permutations
+    }
+
+
+    private fun exploreInvert(start: List<Int>, target: List<Int>, conversions: List<Pair<Int, List<Int>>>): Int {
+        if (start.size <= target.size) {
             throw Exception("Target is bigger")
         }
-        var permutation =start
+        var permutation = start
         var step = 0
         do {
             for (convert in conversions) {
-                val index = Collections.indexOfSubList(permutation, convert.first)
-                if (index>= 0) {
+                val index = Collections.indexOfSubList(permutation, convert.second)
+                if (index >= 0) {
                     step++
-                    permutation = replaceIntList(permutation, convert.first.size, convert.second, index)
+                    permutation = replaceIntList(permutation, convert.second.size, convert.first, index)
                     break
                 }
             }
@@ -49,7 +79,7 @@ class Day19 {
         return step
     }
 
-    private fun replaceIntList(input: List<Int>, sizeToReplace: Int, replacement: Int,index: Int ): List<Int>{
+    private fun replaceIntList(input: List<Int>, sizeToReplace: Int, replacement: Int, index: Int): List<Int> {
         val a = input.subList(0, index)
         val b = input.subList(index + sizeToReplace, input.size)
         return a + replacement + b
