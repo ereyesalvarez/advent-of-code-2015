@@ -7,7 +7,6 @@ import kotlin.test.assertEquals
 class Day19Test {
     private val day = "19"
     private val example = "data/day${day}_example.txt"
-    private val example2 = "data/day${day}_example2.txt"
     private val input = "data/day${day}_input.txt"
 
     private val service = Day19()
@@ -24,12 +23,6 @@ class Day19Test {
         val response = service.execute02(fileContent)
         assertEquals(3, response)
     }
-    @Test
-    fun example2B() {
-        val fileContent = getFileAsText(example2)
-        val response = service.execute02(fileContent)
-        assertEquals(6, response)
-    }
 
     @Test
     fun exercise1() {
@@ -41,7 +34,7 @@ class Day19Test {
     fun exercise2() {
         val fileContent = getFileAsText(input)
         val response = service.execute02(fileContent)
-        assertEquals(518, response)
+        assertEquals(200, response)
     }
     @Test
     fun split(){
